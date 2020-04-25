@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using JsonTestApp.Models
+@using JsonTestApp.Services
+@inject JsonService ProductService
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h3>ProductList</h3>
+
+@for (int rowIndex = 0; rowIndex < ProductService.GetProducts().Count() / 3; rowIndex++) {
+    <div class="card-deck mb-3">
+        @for (int productIndex = rowIndex * 3; productIndex < (rowIndex * 3) + 3; productIndex++) {
+            var tempProductIndex = productIndex;
+            <div class="card text-white bg-info" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="card-header">@ProductsList[productIndex].Name</div>
+                    <div class="card-title price">@ProductsList[productIndex].Price</div>
+                    <p class="card-text">@ProductsList[productIndex].Location</p>
+                    <a href="#" class="btn btn-dark">Buy</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <button @onclick="(e => SelectProduct(ProductsList[tempProductIndex].Id))"
+                                data-toggle="modal" data-target="#productModal"
+                                class="btn btn-outline-light">
+                            More info
+                        </button>
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (SelectedProduct != null) {
+    <div class="modal fade" id="productModal" aria-labelledby="productTitle">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTitle">@SelectedProduct.Name</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@SelectedProduct.Description</p>
+                </div>
+                <div class="modal-footer">
+                    @if (VoteCount == 0) {
+                        <span>Be the first to vote !</span>
+                    } else {
+                        <span>@VoteCount @VoteLabel</span>
+                    }
+
+                    @for (int i = 0; i < MaxAvailableStars; i++) {
+                        var currentStar = i + 1;
+                        if (i < CurrentRating) {
+                            <span @onclick="(e => SubmitRating(currentStar))"
+                                  class="fa fa-star checked"></span>
+                        } else {
+                            <span @onclick="(e => SubmitRating(currentStar))"
+                                  class="fa fa-star"></span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    public Product SelectedProduct { get; private set; }
+    public string SelectedProductId { get; private set; }
+    public List<Product> ProductsList { get { return ProductService.GetProducts().ToList(); } }
+
+    private void SelectProduct( string productId ) {
+        SelectedProductId = productId;
+        SelectedProduct = ProductsList.First(x => x.Id == productId);
+        GetCurrentRating();
+    }
+
+    public int CurrentRating { get; private set; } = 0;
+    public int VoteCount { get; private set; } = 0;
+    public string VoteLabel { get; private set; }
+    public readonly int MaxAvailableStars = 5;
+
+    public void GetCurrentRating() {
+        if (SelectedProduct.Ratings == null) {
+            CurrentRating = 0;
+            VoteCount = 0;
+        } else {
+            CurrentRating = (int)Math.Round(SelectedProduct.Ratings.Average());
+            VoteCount = SelectedProduct.Ratings.Count();
+            VoteLabel = VoteCount > 1 ? "Votes" : "Vote";
+        }
+    }
+
+    public void SubmitRating( int rating ) {
+        System.Console.WriteLine($"Rating received for {SelectedProductId}: {rating}");
+        ProductService.AddRating(SelectedProductId, rating);
+        SelectProduct(SelectedProductId);
+    }
+}

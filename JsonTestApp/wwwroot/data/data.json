@@ -1,0 +1,73 @@
+[
+  {
+    "Id": "cheese_RF",
+    "Name": "Cheese",
+    "Price": 2.5,
+    "Location": "Refrigerated foods",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      4,
+      2,
+      2
+    ]
+  },
+  {
+    "Id": "crisps_TSI",
+    "Name": "Crisps",
+    "Price": 3,
+    "Location": "the Snack isle",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      2,
+      5,
+      4,
+      1,
+      1,
+      1,
+      4
+    ]
+  },
+  {
+    "Id": "pizza_RF",
+    "Name": "Pizza",
+    "Price": 4,
+    "Location": "Refrigerated foods",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      2,
+      5
+    ]
+  },
+  {
+    "Id": "choco_TSI",
+    "Name": "Chocolate",
+    "Price": 1.5,
+    "Location": "the Snack isle",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      5
+    ]
+  },
+  {
+    "Id": "flour_HB",
+    "Name": "Self-raising flour",
+    "Price": 1.5,
+    "Location": "Home baking",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      4
+    ]
+  },
+  {
+    "Id": "almonds_HB",
+    "Name": "Ground almonds",
+    "Price": 3,
+    "Location": "Home baking",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed turpis in metus semper laoreet. In molestie, eros at ultricies volutpat, felis nibh euismod ligula, ut suscipit magna diam vel.",
+    "Ratings": [
+      4,
+      3,
+      5
+    ]
+  }
+]

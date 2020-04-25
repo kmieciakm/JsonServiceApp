@@ -1,0 +1,12 @@
+﻿.price{
+    color: #00ff90;
+    font-weight: bold;
+}
+
+.price::after {
+    content: " $";
+}
+
+.checked {
+    color: yellow;
+}

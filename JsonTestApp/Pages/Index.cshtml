@@ -1,0 +1,13 @@
+﻿@page
+@using JsonTestApp.Models;
+@using JsonTestApp.Components;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1 class="text-md-center mb-5">@Model.AppName</h1>
+
+@(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
+
+<script src="_framework/blazor.server.js"></script>
